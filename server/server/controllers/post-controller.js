@@ -1,9 +1,15 @@
 let Post = require('mongoose').model('Post')
-
 module.exports = {
   getAllPosts: (req, res) => {
+    let searchType = {}
+    if (req.params.type !== 'all') {
+      searchType = {
+        socialAccountType: req.params.type
+      }
+    }
     Post
-    .find()
+    .find(searchType)
+    .sort({ date: -1 })
     .then(posts => {
       res.json({'posts': posts})
     })
@@ -12,9 +18,14 @@ module.exports = {
     })
   },
   getAllPostsPaginated: (req, res) => {
-    console.log(req.params)
+    let searchType = {}
+    if (req.params.type !== 'all') {
+      searchType = {
+        socialAccountType: req.params.type
+      }
+    }
     Post
-    .paginate({}, { sort: { date: -1 }, offset: Number(req.params.offset), limit: Number(req.params.limit) })
+    .paginate(searchType, { sort: { date: -1 }, offset: Number(req.params.offset), limit: Number(req.params.limit) })
     .then(posts => {
       res.json({'posts': posts})
     })

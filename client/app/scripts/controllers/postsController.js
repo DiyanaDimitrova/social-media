@@ -22,9 +22,11 @@ angular.module('socialApp')
     }
 
     init()
-    $scope.getPostsPagineted = function (offset, limit) {
+    $scope.getPostsPagineted($scope.selectedType, 0, 4)
+
+    $scope.getPostsPagineted = function (selectedType, offset, limit) {
       postsService
-        .getAllPostsPaginated(offset, limit)
+        .getAllPostsPaginated(selectedType, offset, limit)
         .then(function (response) {
           console.log('DDDD' + JSON.stringify(response.data))
           $scope.posts = response.data.posts.docs
@@ -58,7 +60,7 @@ angular.module('socialApp')
       if ($scope.currentPage > 0) {
         $scope.currentPage--
       }
-      $scope.getPostsPagineted($scope.currentPage * 4, 4)
+      $scope.getPostsPagineted($scope.selectedType, $scope.currentPage * 4, 4)
     }
 
     $scope.prevPageDisabled = function () {
@@ -69,7 +71,7 @@ angular.module('socialApp')
       if ($scope.currentPage < $scope.pageCount()) {
         $scope.currentPage++
       }
-      $scope.getPostsPagineted($scope.currentPage * 4, 4)
+      $scope.getPostsPagineted($scope.selectedType, $scope.currentPage * 4, 4)
     }
 
     $scope.nextPageDisabled = function () {
@@ -80,7 +82,12 @@ angular.module('socialApp')
       console.log('Total' + $scope.total)
       console.log('itemsPerPage' + $scope.itemsPerPage)
       console.log('currentPage' + $scope.currentPage)
-      console.log('pageCount' + (Math.ceil($scope.total / $scope.itemsPerPage) - 1))
-      return Math.ceil($scope.total / $scope.itemsPerPage) - 1
+      console.log('pageCount' + (Math.ceil($scope.total / $scope.itemsPerPage)))
+      return Math.ceil($scope.total / $scope.itemsPerPage)
     }
+    $scope.$watch('selectedType', function (newValue, oldValue) {
+      if (newValue !== oldValue) {
+        $scope.currentPage = 0
+      }
+    })
   })
