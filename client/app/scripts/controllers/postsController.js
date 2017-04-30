@@ -9,20 +9,7 @@ angular.module('socialApp')
     $scope.filteredPosts = []
     $scope.total = 0
     $scope.itemsPerPage = 4
-    $scope.currentPage = 0
-
-    function init () {
-      typesService
-        .getAllTypes()
-        .then(function (response) {
-          $scope.types = response.data.accountTypes
-        })
-        .catch(function (responses, status, headers, config) {
-        })
-    }
-
-    init()
-    $scope.getPostsPagineted($scope.selectedType, 0, 4)
+    $scope.currentPage = 1
 
     $scope.getPostsPagineted = function (selectedType, offset, limit) {
       postsService
@@ -38,17 +25,20 @@ angular.module('socialApp')
           $log.log(response.error + ' ' + status)
         })
     }
-    // $scope.getPosts = function () {
-    //   postsService
-    //     .getAllPosts()
-    //     .then(function (response) {
-    //       $scope.posts = response.data.posts
-    //     })
-    //     .catch(function (response, status) {
-    //       $log.log(response.error + ' ' + status)
-    //     })
-    // }
-    // $scope.getPosts()
+
+    function init () {
+      typesService
+        .getAllTypes()
+        .then(function (response) {
+          $scope.types = response.data.accountTypes
+        })
+        .catch(function (responses, status, headers, config) {
+        })
+      $scope.getPostsPagineted($scope.selectedType, 0, 4)
+    }
+
+    init()
+
     $scope.filterExpression = function (posts) {
       if ($scope.selectedType === 'all') {
         return posts
@@ -57,21 +47,21 @@ angular.module('socialApp')
       }
     }
     $scope.prevPage = function () {
-      if ($scope.currentPage > 0) {
+      if ($scope.currentPage > 1) {
         $scope.currentPage--
+        $scope.getPostsPagineted($scope.selectedType, ($scope.currentPage - 1) * 4, 4)
       }
-      $scope.getPostsPagineted($scope.selectedType, $scope.currentPage * 4, 4)
     }
 
     $scope.prevPageDisabled = function () {
-      return $scope.currentPage === 0 ? 'disabled' : ''
+      return $scope.currentPage === 1 ? 'disabled' : ''
     }
 
     $scope.nextPage = function () {
       if ($scope.currentPage < $scope.pageCount()) {
         $scope.currentPage++
+        $scope.getPostsPagineted($scope.selectedType, ($scope.currentPage - 1) * 4, 4)
       }
-      $scope.getPostsPagineted($scope.selectedType, $scope.currentPage * 4, 4)
     }
 
     $scope.nextPageDisabled = function () {
@@ -79,15 +69,23 @@ angular.module('socialApp')
     }
 
     $scope.pageCount = function () {
-      console.log('Total' + $scope.total)
-      console.log('itemsPerPage' + $scope.itemsPerPage)
-      console.log('currentPage' + $scope.currentPage)
-      console.log('pageCount' + (Math.ceil($scope.total / $scope.itemsPerPage)))
       return Math.ceil($scope.total / $scope.itemsPerPage)
+    }
+    $scope.getImageName = function (type) {
+      let imageName
+      $scope.types.forEach((value, index) => {
+        if (type === value.id) {
+          imageName = '/images/' + value.icon
+        }
+      })
+      return imageName
     }
     $scope.$watch('selectedType', function (newValue, oldValue) {
       if (newValue !== oldValue) {
-        $scope.currentPage = 0
+        $scope.currentPage = 1
+        // $scope.selectedType = newValue
+        $scope.getPostsPagineted(newValue, 0, 4)
+
       }
     })
   })

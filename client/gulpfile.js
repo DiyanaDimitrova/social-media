@@ -8,29 +8,29 @@ let rimraf = require('rimraf')
 let wiredep = require('wiredep').stream
 let runSequence = require('run-sequence')
 
-let yeoman = {
+let socialMedia = {
   app: require('./bower.json').appPath || 'app',
   dist: 'dist'
 }
 
 let paths = {
-  scripts: [yeoman.app + '/scripts/**/*.js'],
-  styles: [yeoman.app + '/styles/**/*.scss'],
+  scripts: [socialMedia.app + '/scripts/**/*.js'],
+  styles: [socialMedia.app + '/styles/**/*.scss'],
   test: ['test/spec/**/*.js'],
   testRequire: [
-    yeoman.app + '/7/angular/angular.js',
-    yeoman.app + '/bower_components/angular-mocks/angular-mocks.js',
-    yeoman.app + '/bower_components/angular-resource/angular-resource.js',
-    yeoman.app + '/bower_components/angular-cookies/angular-cookies.js',
-    yeoman.app + '/bower_components/angular-sanitize/angular-sanitize.js',
-    yeoman.app + '/bower_components/angular-route/angular-route.js',
+    socialMedia.app + '/bower_components/angular/angular.js',
+    socialMedia.app + '/bower_components/angular-mocks/angular-mocks.js',
+    socialMedia.app + '/bower_components/angular-resource/angular-resource.js',
+    socialMedia.app + '/bower_components/angular-cookies/angular-cookies.js',
+    socialMedia.app + '/bower_components/angular-sanitize/angular-sanitize.js',
+    socialMedia.app + '/bower_components/angular-route/angular-route.js',
     'test/mock/**/*.js',
     'test/spec/**/*.js'
   ],
   karma: 'karma.conf.js',
   views: {
-    main: yeoman.app + '/index.html',
-    files: [yeoman.app + '/views/**/*.html']
+    main: socialMedia.app + '/index.html',
+    files: [socialMedia.app + '/views/**/*.html']
   }
 }
 
@@ -74,7 +74,7 @@ gulp.task('start:client', ['start:server', 'styles'], function () {
 
 gulp.task('start:server', function() {
   $.connect.server({
-    root: [yeoman.app, '.tmp'],
+    root: [socialMedia.app, '.tmp'],
     livereload: true,
     // Change this to '0.0.0.0' to access the server from outside.
     port: 9000
@@ -83,7 +83,7 @@ gulp.task('start:server', function() {
 
 gulp.task('start:server:test', function() {
   $.connect.server({
-    root: ['test', yeoman.app, '.tmp'],
+    root: ['test', socialMedia.app, '.tmp'],
     livereload: true,
     port: 9001
   })
@@ -118,31 +118,31 @@ gulp.task('serve', function (cb) {
     'watch', cb)
 })
 
-gulp.task('serve:prod', function() {
-  $.connect.server({
-    root: [yeoman.dist],
-    livereload: true,
-    port: 9000
-  })
-})
-
-gulp.task('test', ['start:server:test'], function () {
-  let testToFiles = paths.testRequire.concat(paths.scripts, paths.test);
-  return gulp.src(testToFiles)
-    .pipe($.karma({
-      configFile: paths.karma,
-      action: 'watch'
-    }))
-})
+// gulp.task('serve:prod', function() {
+//   $.connect.server({
+//     root: [socialMedia.dist],
+//     livereload: true,
+//     port: 9000
+//   })
+// })
+//
+// gulp.task('test', ['start:server:test'], function () {
+//   let testToFiles = paths.testRequire.concat(paths.scripts, paths.test);
+//   return gulp.src(testToFiles)
+//     .pipe($.karma({
+//       configFile: paths.karma,
+//       action: 'watch'
+//     }))
+// })
 
 // inject bower components
 gulp.task('bower', function () {
   return gulp.src(paths.views.main)
     .pipe(wiredep({
-      directory: yeoman.app + '/bower_components',
+      directory: socialMedia.app + '/bower_components',
       ignorePath: '..'
     }))
-  .pipe(gulp.dest(yeoman.app + '/views'))
+  .pipe(gulp.dest(socialMedia.app + '/views'))
 })
 
 ///////////
@@ -158,7 +158,7 @@ gulp.task('client:build', ['html', 'styles'], function () {
   let cssFilter = $.filter('**/*.css')
 
   return gulp.src(paths.views.main)
-    .pipe($.useref({searchPath: [yeoman.app, '.tmp']}))
+    .pipe($.useref({searchPath: [socialMedia.app, '.tmp']}))
     .pipe(jsFilter)
     .pipe($.ngAnnotate())
     .pipe($.uglify())
@@ -168,32 +168,27 @@ gulp.task('client:build', ['html', 'styles'], function () {
     .pipe(cssFilter.restore())
     .pipe($.rev())
     .pipe($.revReplace())
-    .pipe(gulp.dest(yeoman.dist))
+    .pipe(gulp.dest(socialMedia.dist))
 })
 
 gulp.task('html', function () {
-  return gulp.src(yeoman.app + '/views/**/*')
-    .pipe(gulp.dest(yeoman.dist + '/views'))
+  return gulp.src(socialMedia.app + '/views/**/*')
+    .pipe(gulp.dest(socialMedia.dist + '/views'))
 })
 
 gulp.task('images', function () {
-  return gulp.src(yeoman.app + '/images/**/*')
-    .pipe($.cache($.imagemin({
-        optimizationLevel: 5,
-        progressive: true,
-        interlaced: true
-    })))
-    .pipe(gulp.dest(yeoman.dist + '/images'))
+  return gulp.src(socialMedia.app + '/images/**/*')
+         .pipe(gulp.dest(socialMedia.app + '/../.tmp/images'))
 })
 
 gulp.task('copy:extras', function () {
-  return gulp.src(yeoman.app + '/*/.*', { dot: true })
-    .pipe(gulp.dest(yeoman.dist))
+  return gulp.src(socialMedia.app + '/*/.*', { dot: true })
+    .pipe(gulp.dest(socialMedia.dist))
 })
 
 gulp.task('copy:fonts', function () {
-  return gulp.src(yeoman.app + '/fonts/**/*')
-    .pipe(gulp.dest(yeoman.dist + '/fonts'))
+  return gulp.src(socialMedia.app + '/fonts/**/*')
+    .pipe(gulp.dest(socialMedia.dist + '/fonts'))
 })
 
 gulp.task('build', ['clean:dist'], function () {

@@ -6,7 +6,7 @@
     "install-server": "cd server && npm install",
     "install-client": "cd client && npm install && bower install",
     "install-packages": "concurrently \"npm run install-server\" \"npm run install-client\"",
-    "client": "cd client && gulp start:server",
+    "client": "cd client && gulp serve",
     "server": "cd server && nodemon index.js",
     "start": "concurrently \"npm run server\" \"npm run client\" "
   },
