@@ -17,6 +17,12 @@ npm run install-packages
 ```
 npm run start
 ```
+This will run BE and FE servers and automatically open application index page
+in the browser. Also will listening for developer's changes
+
+## Database
+This app is using mongoDB with mongoose ODM.
+The DB use MLab Database-as-a-Service (https://mlab.com/)
 
 ## Authors
 
