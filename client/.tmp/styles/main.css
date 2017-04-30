@@ -1,35 +1,77 @@
 body {
+  background-color: #F4F4F4;
+}
+
+#posts {
+  margin-top: 50px;
+}
+
+.pagination {
+  margin: 0;
+}
+
+.pagination a {
+  border-radius: 0 !important;
+  margin: 0 5px;
+}
+
+.pagination .prev {
+  margin-right: 8px;
+}
+
+.page-indicator {
+  text-align: right;
+  padding-right: 0;
+  line-height: 35px;
+  width: calc(100% - 100px);
+}
+
+.post-container {
+  background: #fff;
+  padding: 10px;
+}
+
+.post-container .row {
+  margin: 0;
+}
+
+.pagination-button-container {
+  text-align: right;
+  padding-left: 0;
+  width: 100px;
+  float: right;
+}
+
+.pixel-border {
   padding: 0;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.footer {
-  padding-left: 15px;
-  padding-right: 15px;
+select {
+  height: 32px;
+  width: 120px;
 }
 
-/* Custom page header */
-.header {
-  margin-bottom: 10px;
+select, .pagination a {
+  box-shadow: 2px 2px 0px 0px #c4c4c4;
 }
 
-/* Custom page footer */
-.footer {
-  padding-top: 19px;
+.card {
+  min-height: 140px;
+  padding: 10px;
+  border: 1px solid #C4C4C4;
+  margin: 5px;
+  box-shadow: 2px 2px 0px 0px #c4c4c4;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
-  }
-  .header,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-  .header {
-    margin-bottom: 30px;
-  }
+.card h4 {
+  margin: 0;
+}
+
+.card .card-text {
+  padding-left: 5px;
+}
+
+.card img {
+  width: 23px;
+  height: 23px;
 }

@@ -15,7 +15,6 @@ angular.module('socialApp')
       postsService
         .getAllPostsPaginated(selectedType, offset, limit)
         .then(function (response) {
-          console.log('DDDD' + JSON.stringify(response.data))
           $scope.posts = response.data.posts.docs
           $scope.offset = response.data.posts.offset
           $scope.limit = response.data.posts.limit
@@ -83,9 +82,7 @@ angular.module('socialApp')
     $scope.$watch('selectedType', function (newValue, oldValue) {
       if (newValue !== oldValue) {
         $scope.currentPage = 1
-        // $scope.selectedType = newValue
         $scope.getPostsPagineted(newValue, 0, 4)
-
       }
     })
   })

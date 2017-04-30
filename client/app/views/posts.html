@@ -1,41 +1,48 @@
 <div id='posts'>
   <div id='postsContainer'>
       <div id='headerSection'>
-        <div id='typesDropdown'>
-          <select ng-model="selectedType">
-            <option value="all">All</option>
-            <option ng-repeat="type in types" value="{{type.id}}">{{type.name}}</option>
-          </select>
-        </div>
-        <div id='pagination'>
-          <div class="text-center">
-              <span>
-                Page: {{currentPage}}
-              </spam>
-                <ul class="pagination">
-                    <li ng-class="prevPageDisabled()">
-                        <a href ng-click="prevPage()"><</a>
-                    </li>
-                    <li ng-class="nextPageDisabled()">
-                        <a href ng-click="nextPage()">></a>
-                    </li>
-                </ul>
+        <div class="row">
+          <div class="col-xs-4 col-sm-6">
+            <div id='typesDropdown'>
+              <select ng-model="selectedType">
+                <option value="all">All</option>
+                <option ng-repeat="type in types" value="{{type.id}}">{{type.name}}</option>
+              </select>
             </div>
+          </div>
+          <div class="col-xs-8 col-sm-6">
+            <div class="row">
+                  <div class="col-xs-6 page-indicator">
+                    Page {{currentPage}}
+                  </div>
+                  <div class="col-xs-6 pagination-button-container">
+
+
+                    <ul class="pagination">
+                        <li ng-class="prevPageDisabled()">
+                            <a href ng-click="prevPage()" class="prev"><</a>
+                        </li>
+                        <li ng-class="nextPageDisabled()">
+                            <a href ng-click="nextPage()">></a>
+                        </li>
+                    </ul>
+                  </div>
+
+            </div>
+          </div>
         </div>
       </div>
 
-  <div class="container">
+  <div class="post-container">
           <div class="row">
             <div class="pixel-border col-xs-12 col-sm-6" ng-repeat="post in posts | filter: filterExpression">
               <div class="card">
                 <div class="card-block">
                   <h4 class="card-title">
-                      <img ng-src="{{myFunction()}}" />
                     <img ng-src="{{getImageName(post.socialAccountType)}}" />
                     {{post.author}}
                   </h4>
                   <p class="card-text">{{post.content | limitTo: 100}}</p>
-                  <p>{{post.socialAccountType}}</p>
                 </div>
               </div>
             </div>
