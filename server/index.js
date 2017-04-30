@@ -10,4 +10,4 @@ require('./server/config/express')(config, app)
 require('./server/config/routes')(app)
 
 app.listen(config.port)
-console.log('Express ready!')
+console.log('BE server wirking on: ' + config.port + ' port')
