@@ -1,11 +1,11 @@
 'use strict'
 angular.module('socialApp')
-  .directive('accountItemDirective', () => {
+  .directive('accountItemDirective', function() {
     return {
-      template: '<div></div>',
-      restrict: 'E',
-      link: postLink(scope, element, attrs) => {
-        element.text('this is the myDirective directive')
+      templateUrl: 'accountItem/accountItem.html',
+      restrict: 'EA',
+      link: function postLink(scope, element, attrs) {
+        console.log('INSIDE')
       }
     }
   })

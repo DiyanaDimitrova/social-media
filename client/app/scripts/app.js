@@ -5,22 +5,12 @@ angular
     'ngResource',
     'ngRoute'
   ])
-  .config( ($routeProvider) => {
+  .config( function($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .when('/myroute', {
-        templateUrl: 'views/myroute.html',
-        controller: 'MyrouteCtrl',
-        controllerAs: 'myroute'
+        templateUrl: 'views/posts.html',
+        controller: 'postController',
+        controllerAs: 'postController'
       })
       .otherwise({
         redirectTo: '/'

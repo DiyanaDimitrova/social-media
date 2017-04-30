@@ -14,7 +14,7 @@ module.exports = {
   getAllPostsPaginated: (req, res) => {
     console.log(req.params)
     Post
-    .paginate({}, { offset: Number(req.params.offset), limit: Number(req.params.limit) })
+    .paginate({}, { sort: { date: -1 }, offset: Number(req.params.offset), limit: Number(req.params.limit) })
     .then(posts => {
       res.json({'posts': posts})
     })

@@ -5,7 +5,6 @@ module.exports = {
     AccountType
     .find()
     .then(accountTypes => {
-      console.log('AAAA' + JSON.stringify(accountTypes))
       res.json({'accountTypes': accountTypes})
     })
     .catch(err => {

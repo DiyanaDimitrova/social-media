@@ -1,0 +1,21 @@
+{
+  "name": "social-media-task",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "install-server": "cd server && npm install",
+    "install-client": "cd client && npm install && bower install",
+    "client": "cd client && gulp start:server",
+    "server": "cd server && nodemon index.js",
+    "start": "concurrently \"npm run server\" \"npm run client\" "
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DiyanaDimitrova/social-media-task.git"
+  },
+  "author": "Diyana Dimitrova",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^3.4.0"
+  }
+}

@@ -18,7 +18,7 @@ let paths = {
   styles: [yeoman.app + '/styles/**/*.scss'],
   test: ['test/spec/**/*.js'],
   testRequire: [
-    yeoman.app + '/bower_components/angular/angular.js',
+    yeoman.app + '/7/angular/angular.js',
     yeoman.app + '/bower_components/angular-mocks/angular-mocks.js',
     yeoman.app + '/bower_components/angular-resource/angular-resource.js',
     yeoman.app + '/bower_components/angular-cookies/angular-cookies.js',

@@ -12,6 +12,7 @@
     "angular-mocks": "^1.4.0"
   },
   "appPath": "app",
+  "appBowerComponents": "bower_components",
   "moduleName": "socialApp",
   "overrides": {
     "bootstrap": {
