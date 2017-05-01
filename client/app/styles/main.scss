@@ -1,73 +1,81 @@
-body{
+body {
   background-color: #F4F4F4;
 }
-#posts{
+
+#posts {
   margin-top: 50px;
 }
 
-.pagination{
+.pagination {
   margin: 0;
-  a{
+
+  a {
     border-radius: 0 !important;
     margin: 0 5px;
   }
-  .prev{
+
+  .prev {
     margin-right: 8px;
   }
 }
 
-.page-indicator{
+.page-indicator {
   text-align: right;
   padding-right: 0;
   line-height: 35px;
   width: calc(100% - 100px);
 }
 
-.post-container{
+.post-container {
   background: #fff;
   padding: 10px;
-  .row{
+
+  .row {
     margin: 0;
   }
 }
 
-.pagination-button-container{
+.pagination-button-container {
   text-align: right;
   padding-left: 0;
   width: 100px;
   float: right;
 }
 
-.pixel-border{
+.pixel-border {
   padding: 0;
 }
 
-select{
+select {
   height: 32px;
   width: 120px;
 }
 
-select, .pagination a{
-  -webkit-box-shadow: 2px 2px 0px 0px rgba(196,196,196,1);
-  -moz-box-shadow: 2px 2px 0px 0px rgba(196,196,196,1);
-   box-shadow: 2px 2px 0px 0px rgba(196,196,196,1);
+.pagination a,
+select {
+  -webkit-box-shadow: 2px 2px 0 0 rgba(196,196,196,1);
+  -moz-box-shadow: 2px 2px 0 0 rgba(196,196,196,1);
+  box-shadow: 2px 2px 0 0 rgba(196,196,196,1);
 }
 
-.card{
+.card {
   min-height: 140px;
   padding: 10px;
   border: 1px solid #C4C4C4;
   margin: 5px;
-  -webkit-box-shadow: 2px 2px 0px 0px rgba(196,196,196,1);
-  -moz-box-shadow: 2px 2px 0px 0px rgba(196,196,196,1);
-  box-shadow: 2px 2px 0px 0px rgba(196,196,196,1);
+  -webkit-box-shadow: 2px 2px 0 0 rgba(196,196,196,1);
+  -moz-box-shadow: 2px 2px 0 0 rgba(196,196,196,1);
+  box-shadow: 2px 2px 0 0 rgba(196,196,196,1);
+
   h4 {
     margin: 0;
   }
-  .card-text{
+
+  .card-text {
     padding-left: 5px;
   }
-  img{
+
+  img {
     width: 23px;
     height: 23px;
   }

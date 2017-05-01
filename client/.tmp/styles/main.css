@@ -51,8 +51,9 @@ select {
   width: 120px;
 }
 
-select, .pagination a {
-  box-shadow: 2px 2px 0px 0px #c4c4c4;
+.pagination a,
+select {
+  box-shadow: 2px 2px 0 0 #c4c4c4;
 }
 
 .card {
@@ -60,7 +61,7 @@ select, .pagination a {
   padding: 10px;
   border: 1px solid #C4C4C4;
   margin: 5px;
-  box-shadow: 2px 2px 0px 0px #c4c4c4;
+  box-shadow: 2px 2px 0 0 #c4c4c4;
 }
 
 .card h4 {

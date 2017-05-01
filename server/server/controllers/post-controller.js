@@ -7,13 +7,9 @@ module.exports = {
         socialAccountType: req.params.type
       }
     }
-    Post
-    .find(searchType)
-    .sort({ date: -1 })
-    .then(posts => {
+    Post.find(searchType).sort({date: -1}).then(posts => {
       res.json({'posts': posts})
-    })
-    .catch(err => {
+    }).catch(err => {
       res.json({'error': err})
     })
   },
@@ -24,12 +20,15 @@ module.exports = {
         socialAccountType: req.params.type
       }
     }
-    Post
-    .paginate(searchType, { sort: { date: -1 }, offset: Number(req.params.offset), limit: Number(req.params.limit) })
-    .then(posts => {
+    Post.paginate(searchType, {
+      sort: {
+        date: -1
+      },
+      offset: Number(req.params.offset),
+      limit: Number(req.params.limit)
+    }).then(posts => {
       res.json({'posts': posts})
-    })
-    .catch(err => {
+    }).catch(err => {
       res.json({'error': err})
     })
   }

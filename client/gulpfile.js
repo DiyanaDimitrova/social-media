@@ -54,7 +54,6 @@ gulp.task('start:client-server', function () {
   $.connect.server({
     root: [socialMedia.app, '.tmp'],
     livereload: true,
-    // Change this to '0.0.0.0' to access the server from outside.
     port: 9000
   })
 })
