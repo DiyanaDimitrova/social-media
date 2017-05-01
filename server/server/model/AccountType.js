@@ -1,5 +1,6 @@
 const mongoose = require('mongoose')
 
+//model for Account type collection
 let accountTypeSchema = mongoose.Schema({
   id: {
     type: Number,

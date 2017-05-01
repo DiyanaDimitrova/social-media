@@ -2,6 +2,7 @@ const express = require('express')
 const cookieParser = require('cookie-parser')
 const bodyParser = require('body-parser')
 
+// express configurations
 module.exports = (config, app) => {
   app.use(cookieParser())
   app.use(bodyParser.urlencoded({ extended: true }))

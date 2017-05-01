@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 const mongoosePaginate = require('mongoose-paginate')
 
+//model for Posts collection
 let postSchema = mongoose.Schema({
   id: {
     type: Number,

@@ -1,5 +1,6 @@
 let mongoose = require('mongoose')
 
+// Database configurations
 mongoose.Promise = global.Promise
 
 module.exports = (config) => {

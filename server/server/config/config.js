@@ -2,6 +2,7 @@ const path = require('path')
 
 let rootPath = path.normalize(path.join(__dirname, '/../../'))
 
+// configuration for the db and server port
 module.exports = {
   development: {
     rootPath: rootPath,
